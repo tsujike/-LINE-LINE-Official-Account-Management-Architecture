@@ -50,4 +50,12 @@ function test_array() {
   })
 }
 
+//公式情報
+//LINE Developers:tgrecords912
+//name:OKRTerm1公式テストアカウント
+//ID:@675qdkio
+//URL:https://lin.ee/4ENhT0k
+//QR:https://qr-official.line.me/gs/M_675qdkio_GW.png
+
+
 

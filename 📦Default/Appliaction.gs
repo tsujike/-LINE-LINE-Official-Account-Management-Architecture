@@ -1,3 +1,86 @@
+//　# スクリプトファイル目次
+//　各クラスは　/** 🔚 End 🔚 */　で区切ってます。
+// ## クラス
+// - Follow
+// - UnFollow
+
+// ## ユーティリティ系
+
+
+//アプリケーション層
+//データベースや外部システムとの通信を担当するリポジトリクラスや
+//外部システムとのインターフェースを提供するサービスクラスなどを持ちます
+//設計は「Appliaction」という名前からスタートします
+class Appliaction {
+
+  /** 
+    * @constructor
+    * @param{object} Webhookイベントオブジェクト
+    */
+  constructor(event) {
+    this.event = event;
+
+    //ドメインオブジェクト群
+    this.domainObjects = {
+      Follow: new Follow(this.event),
+      Unfollow: new Unfollow(this.event)
+      //ドメインオブジェクトに変更があったら足す
+    }
+  }
+
+  /** 特定のドメインオブジェクトの課題を処理するメソッド
+   */
+  getSolutions() {
+    const domainObject = this.getDomainObject_();
+    domainObject.getSolution();
+  }
+
+
+  /** ドメインオブジェクトを取得するメソッド
+   * @return{object} ドメインオブジェクト
+   */
+  getDomainObject_() {
+    for (const domainObject of this.domainObjects) {
+      if (domainObject.isDomainObject()) {
+        const domainName = domainObject.getName();
+        return this.domainObjects[domainName]
+      }
+    }
+  }
+
+
+
+}
+
+
+//上記クラスのテスト関数
+function test_Appliaction() {
+
+  const exports = GASUnit.exports
+  const assertThat = AssertGAS.assertThat
+
+  exports({
+    'Array': {
+      '#indexOf()': {
+        'should return -1 when not present': function () {
+          const index = [1, 2, 3].indexOf(4)
+          assertThat(index).is(-1)
+        },
+        'should return the index when present': function () {
+          const index = [1, 2, 3].indexOf(3)
+          assertThat(index).is(2)
+        }
+      }
+    }
+  })
+}
+
+
+/** 🔚 End 🔚 */
+
+
+
+
 /** リッチメニューに関するクラス */
 class RichMenu {
 
@@ -227,3 +310,64 @@ function testRichMenu() {
 
 
 }
+
+
+
+
+/** 🔚 End 🔚 */
+
+
+
+/** FORMクラス */
+class Form {
+
+  /** 
+    * @constructor
+    * @param{object} イベントオブジェクト
+    */
+  constructor(event) {
+    this.messageType = event.type;
+    this.userMessage = event.postback.data;
+    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
+    this.userId = event.source.userId;
+    this.mode = event.mode;
+    this.scenario = event.postback.data.match(/\[.*?_/)[0].replace("[", "").replace("_", ""); //followなど
+    this.formZone = parseInt(event.postback.data.match(/Form\d+/)[0].replace("Form", "")); //form1から1を数値型として抽出したもの
+    this.answerNumber = event.postback.data.match(/A\d+|終了/)[0]; //Q1など
+
+  }
+
+  /** 個別メッセージを送信するメソッド */
+  sendForm() {
+
+    const l = new LINE();
+
+    if (this.answerNumber !== "終了") {
+      const messageObject = ENUM_FORM[`${this.scenario}_Form`][this.formZone];
+      l.sendUniquePushMessage(messageObject, this.userId);
+    }
+
+    //回答ありがとうございました。
+    if (this.answerNumber === "終了") {
+      const messageObject = [{
+        "type": "text",
+        "text": "ご回答ありがとうございました🐎🚜リッチメニューより特典を受け取ってください",
+      }
+      ];
+
+      l.sendUniquePushMessage(messageObject, this.userId);
+    }
+
+  }
+
+
+
+  /** スプレッドシートに貼り付ける用の2次元配列を作成するメソッド */
+  createArray() {
+    return [this.messageType, this.userMessage, this.timestamp, this.userId, "", this.mode, this.scenario, this.formZone, this.answerNumber];
+  }
+
+
+}
+
+
