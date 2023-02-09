@@ -1,4 +1,4 @@
-const FOLLOW_WebhookEvent_SAMPLE = { postData: { contents: '{"destination":"xxxxxxxxxx","events":[{"replyToken":"nHuyWiB7yP5Zw52FIkcQobQuGDXCTA","type":"message","mode":"active","timestamp":1462629479859,"source":{"type":"user","userId":"U4af4980629..."},"webhookEventId":"01FZ74A0TDDPYRVKNK77XKC3ZR","deliveryContext":{"isRedelivery":false},"message":{"id":"325708","type":"text","text":"@example Hello, world! (love)","emojis":[{"index":14,"length":6,"productId":"5ac1bfd5040ab15980c9b435","emojiId":"001"}],"mention":{"mentionees":[{"index":0,"length":8,"userId":"U850014438e..."}]}}}]}' } };
+const FOLLOW_WebhookEvent_SAMPLE = { postData: { contents: '{"destination":"xxxxxxxxxx","events":[{"replyToken":"nHuyWiB7yP5Zw52FIkcQobQuGDXCTA","type":"follow","mode":"active","timestamp":1462629479859,"source":{"type":"user","userId":"U4af4980629..."},"webhookEventId":"01FZ74A0TDDPYRVKNK77XKC3ZR","deliveryContext":{"isRedelivery":false}}]}' } };
 
 const UNFOLLOW_WebhookEvent_SAMPLE = { postData: { contents: '{"destination":"xxxxxxxxxx","events":[{"type":"unfollow","mode":"active","timestamp":1462629479859,"source":{"type":"user","userId":"U4af4980629..."},"webhookEventId":"01FZ74A0TDDPYRVKNK77XKC3ZR","deliveryContext":{"isRedelivery":false}}]}' } };
 
@@ -8,7 +8,7 @@ const SpotInquiry_WebhookEvent_SAMPLE = { postData: { contents: '{"destination":
 const PostBack_WebhookEvent_SAMPLE = { postData: { contents: '{"destination":"xxxxxxxxxx","events":[{"replyToken":"b60d432864f44d079f6d8efe86cf404b","type":"postback","mode":"active","source":{"userId":"U91eeaf62d...","type":"user"},"timestamp":1513669370317,"webhookEventId":"01FZ74A0TDDPYRVKNK77XKC3ZR","deliveryContext":{"isRedelivery":false},"postback":{"data":"storeId=12345","params":{"datetime":"2017-12-25T01:00"}}}]}' } };
 
 
-
+/** 使うかわかんないけどEnum */
 const ENUM_DomainObject = {
 
   Follow: {
@@ -29,3 +29,13 @@ const ENUM_DomainObject = {
   },
 
 };
+
+
+/** WebhookイベントオブジェクトのJSONを作る関数 */
+function createJSON() {
+  // 最終系はここの文字列リテラルにコピペする
+  // const e = { postData: { contents: '' } };
+
+  //リファレンスからここにコピペして、ログを上にコピペする
+  console.log(JSON.stringify());
+}

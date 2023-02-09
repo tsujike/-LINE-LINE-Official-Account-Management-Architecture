@@ -34,7 +34,6 @@ class Application {
   getSolutions() {
     const domainObject = this.getDomainObject_();
     const result = domainObject.getSolution();
-  console.log(result);
     return result
   }
 
@@ -44,10 +43,15 @@ class Application {
    */
   getDomainObject_() {
     const domainObjects = this.domainObjects;
-    for (const domainObject in domainObjects) {
-      if (domainObjects[domainObject].isDomainObject()) {
-        return domainObjects[domainObject]
+    for (const domainObjectName in domainObjects) {
+
+console.log(domainObjects[domainObjectName].isDomainObject());
+
+      if (domainObjects[domainObjectName].isDomainObject()) {
+        return domainObjects[domainObjectName]
       }
+
+
     }
 
   }
@@ -69,16 +73,35 @@ function test_Appliaction() {
   const assertThat = AssertGAS.assertThat
 
   exports({
-    'Array': {
-      '#indexOf()': {
-        'should return -1 when not present': function () {
-          const index = [1, 2, 3].indexOf(4)
-          assertThat(index).is(-1)
+    'Appliaction': {
+      '#domainObjects': {
+        'FOLLOWオブジェクトを返すはず': function () {
+          const e = FOLLOW_WebhookEvent_SAMPLE;
+          const event = JSON.parse(e.postData.contents).events[0];
+          const a = new Application(event);
+          const domainObject = a.domainObjects["Follow"];
+          const result = domainObject.name;
+          const expectation = "Follow"
+          assertThat(result).is(expectation);
         },
-        'should return the index when present': function () {
-          const index = [1, 2, 3].indexOf(3)
-          assertThat(index).is(2)
-        }
+        'UNFOLLOWドメインオブジェクトを返す': function () {
+          const e = UNFOLLOW_WebhookEvent_SAMPLE;
+          const event = JSON.parse(e.postData.contents).events[0];
+          const a = new Application(event);
+          const domainObject = a.domainObjects["UnFollow"];
+          const result = domainObject.name;
+          const expectation = "UnFollow"
+          assertThat(result).is(expectation);
+        },
+        'SpotInquiryオブジェクトを返': function () {
+          const e = SpotInquiry_WebhookEvent_SAMPLE;
+          const event = JSON.parse(e.postData.contents).events[0];
+          const a = new Application(event);
+          const domainObject = a.domainObjects["SpotInquiry"];
+          const result = domainObject.name;
+          const expectation = "SpotInquiry"
+          assertThat(result).is(expectation);
+        },
       }
     }
   })

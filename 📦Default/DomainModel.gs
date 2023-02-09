@@ -19,13 +19,17 @@ class Follow {
     * @param{object} Webhookイベントオブジェクト
     */
   constructor(event) {
+
+    //まぁ意味ないかもだけど、ちゃんとEnumから取得しようね
+    this.name = ENUM_DomainObject.Follow.name;
+
+    //Webhookイベントオブジェクトを解析
     this.event = event;
 
     this.userMessage = "ブロック解除";
     this.type = event.type;
     this.mode = event.mode;
     this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
-    this.sourceUser = event.source.userId;
     this.sourceUserId = event.source.userId;
   }
 
@@ -53,8 +57,7 @@ class Follow {
 
   /** ドメインオブジェクト判定メソッド */
   isDomainObject() {
-    if (!this.type === "follow") return "followオブジェクトではありません";
-    return true + "メソッド全体スコープです"
+    return this.type === "follow" ? true : false
   }
 
 
@@ -77,13 +80,17 @@ class UnFollow {
      * @param{object} Webhookイベントオブジェクト
      */
   constructor(event) {
+
+    //まぁ意味ないかもだけど、ちゃんとEnumから取得しようね
+    this.name = ENUM_DomainObject.UnFollow.name;
+
+    //Webhookイベントオブジェクトを解析
     this.event = event;
 
-    this.userMessage = "ブロック解除";
+    this.userMessage = "ブロック😨";
     this.type = event.type;
     this.mode = event.mode;
     this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
-    this.sourceUser = event.source.userId;
     this.sourceUserId = event.source.userId;
   }
 
@@ -105,13 +112,13 @@ class UnFollow {
     const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
     GmailApp.sendEmail(ADMIN_EMAIL, "成功です", this.userMessage);
 
-  }
+    return "UnFollowオブジェクトは課題を解決したのでメールを送信しました"
 
+  }
   /** ドメインオブジェクト判定メソッド */
   isDomainObject() {
-    if (this.type === "unfollow") return true;
+    return this.type === "unfollow" ? true : false
   }
-
 
   /** Helloを返すメソッド
    * @return{object} ドメインオブジェクト
@@ -134,14 +141,18 @@ class SpotInquiry {
      * @param{object} Webhookイベントオブジェクト
      */
   constructor(event) {
+
+    //まぁ意味ないかもだけど、ちゃんとEnumから取得しようね
+    this.name = ENUM_DomainObject.SpotInquiry.name;
+
+    //Webhookイベントオブジェクトを解析
     this.event = event;
 
-    this.userMessage = event.message.text;
+    //こいつら、共通のものはいいけど、独自なものは、自分のメソッド内で呼び出さないとエラーなるよ
     this.messageType = event.type;
     this.mode = event.mode;
     this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
     this.replyToken = event.replyToken;
-    this.sourceUser = event.source.userId;
     this.sourceUserId = event.source.userId;
   }
 
@@ -161,15 +172,16 @@ class SpotInquiry {
 
     //成功処理？
     const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
-    GmailApp.sendEmail(ADMIN_EMAIL, "成功です", this.userMessage);
+    GmailApp.sendEmail(ADMIN_EMAIL, "SpotInquryオブジェクト成功です", this.event.message.text);
 
-    return "FollowオブジェクトgetSolution()が成功しました";
+    return "SpotInquiryオブジェクトは課題を解決したのでメールを送信しました";
 
   }
 
   /** ドメインオブジェクト判定メソッド */
   isDomainObject() {
-    if (this.type === "unfollow") return true;
+    //ドメインオブジェクトの判定は、丁寧にやるべき
+    return this.messageType === "message" ? true : false
   }
 
 
@@ -177,7 +189,7 @@ class SpotInquiry {
    * @return{object} ドメインオブジェクト
    */
   getHello() {
-    return "Hello! I'm unFollow オブジェクト"
+    return "Hello! I'm SpotInquryオブジェクト"
   }
 
 
