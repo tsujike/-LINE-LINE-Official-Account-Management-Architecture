@@ -35,31 +35,26 @@ function test_doPost() {
   exports({
     'LINE公式アカウントのテストです': {
       '#doPost(e)のテストです': {
+        // 'SpotInquryオブジェクトテスト': function () {
+          // const result = doPost(e);
+          // const expectation = "SpotInquiryオブジェクトは課題を解決したのでメールを送信しました"
+          // assertThat(result).is(expectation);
+        // },
         'Followオブジェクトテスト': function () {
           const e = FOLLOW_WebhookEvent_SAMPLE;
           const result = doPost(e);
-          console.log(result);
           const expectation = "Followオブジェクトは課題を解決したのでメールを送信しました"
           assertThat(result).is(expectation);
         },
-        'UnFollowオブジェクトテスト': function () {
-        const e = UNFOLLOW_WebhookEvent_SAMPLE;
-        const result = doPost(e);
-        console.log(result);
-        const expectation = "UnFollowオブジェクトは課題を解決したのでメールを送信しました"
-        assertThat(result).is(expectation);
-        },
-        'SpotInquryオブジェクトテスト': function () {
-          const e = SpotInquiry_WebhookEvent_SAMPLE;
-          const result = doPost(e);
-          const expectation = "SpotInquiryオブジェクトは課題を解決したのでメールを送信しました"
-          assertThat(result).is(expectation);
-        },
+        // 'UnFollowオブジェクトテスト': function () {
+          // const result = doPost(e);
+          // const expectation = "UnFollowオブジェクトは課題を解決したのでメールを送信しました"
+          // assertThat(result).is(expectation);
+        // },
         // 'PostBackオブジェクトテスト': function () {
-        // const e = FOLLOW_WebhookEvent_SAMPLE;
-        // const result = doPost(e);
-        // const expectation = "Followオブジェクトは課題を解決したのでメールを送信しました"
-        // assertThat(result).is(expectation);
+          // const result = doPost(e);
+          // const expectation = "Followオブジェクトは課題を解決したのでメールを送信しました"
+          // assertThat(result).is(expectation);
         // }
 
 

@@ -15,7 +15,7 @@ function setPropertyStore() {
   // const TESTUSER_ID = "ここにユーザーIDを入力して実行する";
   // properties.setProperty('TESTUSER_ID', TESTUSER_ID);
 
-  // const ADMIN_EMAIL = "ここに管理者のメルアドを入力して実行する";
+  // const ADMIN_EMAIL = "ここにメルアドを入力して実行する";
   // properties.setProperty('ADMIN_EMAIL', ADMIN_EMAIL);
 
 }
