@@ -44,16 +44,10 @@ class Application {
   getDomainObject_() {
     const domainObjects = this.domainObjects;
     for (const domainObjectName in domainObjects) {
-
-console.log(domainObjects[domainObjectName].isDomainObject());
-
       if (domainObjects[domainObjectName].isDomainObject()) {
         return domainObjects[domainObjectName]
       }
-
-
     }
-
   }
 
 

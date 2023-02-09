@@ -42,7 +42,6 @@ class DataSheet {
     const data = this.getDataSheetRecords();
     const userIdColum = data.map(record => { return record["userId"] });
     const result = userIdColum.includes(userId);
-
     return result
   }
 
