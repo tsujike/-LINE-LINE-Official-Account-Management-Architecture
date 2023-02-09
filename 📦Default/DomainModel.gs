@@ -3,12 +3,15 @@
 // ## クラス
 // - Follow
 // - UnFollow
+// - SpotInquiry
 
 // ## ユーティリティ系
 // - richMenuEnum
 
 
-/**お友だち登録時ドメインオブジェクト */
+/**お友だち登録時ドメインオブジェクト
+ * https://developers.line.biz/ja/reference/messaging-api/#follow-event
+ */
 class Follow {
 
   /** 
@@ -18,16 +21,12 @@ class Follow {
   constructor(event) {
     this.event = event;
 
-    this.messageType = event.type;
     this.userMessage = "ブロック解除";
-    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
-    this.userId = event.source.userId;
-    this.replyToken = event.replyToken;
+    this.type = event.type;
     this.mode = event.mode;
-
-    //フォロー時はメッセージ来ないだろ
-    this.userMessage = event.message.text;
-
+    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
+    this.sourceUser = event.source.userId;
+    this.sourceUserId = event.source.userId;
   }
 
   /** ドメインオブジェクトのエントリポイントと言える課題解決メソッド */
@@ -42,19 +41,30 @@ class Follow {
     // const a = new A();
     // const b = new B(a);
     // b.doSomething();
+
+
+    //成功処理？
+    const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
+    GmailApp.sendEmail(ADMIN_EMAIL, "成功です", this.userMessage);
+
+    return "Followオブジェクトは課題を解決したのでメールを送信しました"
+
   }
-
-
-  /** サブメソッド */
-  gaibuSyori_() {
-    return this.property;
-  }
-
 
   /** ドメインオブジェクト判定メソッド */
   isDomainObject() {
-    if (this.messageType === "follow") return true;
+    if (!this.type === "follow") return "followオブジェクトではありません";
+    return true + "メソッド全体スコープです"
   }
+
+
+  /** Helloを返すメソッド
+   * @return{object} ドメインオブジェクト
+   */
+  getHello() {
+    return "Hello! I'm Follow オブジェクト"
+  }
+
 
 }
 
@@ -62,24 +72,19 @@ class Follow {
 
 /**ブロック時ドメインオブジェクト */
 class UnFollow {
-
   /** 
-    * @constructor
-    * @param{object} Webhookイベントオブジェクト
-    */
+     * @constructor
+     * @param{object} Webhookイベントオブジェクト
+     */
   constructor(event) {
     this.event = event;
 
-    this.messageType = event.type;
     this.userMessage = "ブロック解除";
-    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
-    this.userId = event.source.userId;
-    this.replyToken = event.replyToken;
+    this.type = event.type;
     this.mode = event.mode;
-
-    //フォロー時はメッセージ来ないだろ
-    this.userMessage = event.message.text;
-
+    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
+    this.sourceUser = event.source.userId;
+    this.sourceUserId = event.source.userId;
   }
 
   /** ドメインオブジェクトのエントリポイントと言える課題解決メソッド */
@@ -94,18 +99,25 @@ class UnFollow {
     // const a = new A();
     // const b = new B(a);
     // b.doSomething();
+
+
+    //成功処理？
+    const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
+    GmailApp.sendEmail(ADMIN_EMAIL, "成功です", this.userMessage);
+
   }
-
-
-  /** サブメソッド */
-  gaibuSyori_() {
-    return this.property;
-  }
-
 
   /** ドメインオブジェクト判定メソッド */
   isDomainObject() {
-    if (this.messageType === "unllow") return true;
+    if (this.type === "unfollow") return true;
+  }
+
+
+  /** Helloを返すメソッド
+   * @return{object} ドメインオブジェクト
+   */
+  getHello() {
+    return "Hello! I'm unFollow オブジェクト"
   }
 
 
@@ -115,9 +127,71 @@ class UnFollow {
 
 /** 🔚 End 🔚 */
 
+/**ブロック時ドメインオブジェクト */
+class SpotInquiry {
+  /** 
+     * @constructor
+     * @param{object} Webhookイベントオブジェクト
+     */
+  constructor(event) {
+    this.event = event;
+
+    this.userMessage = event.message.text;
+    this.messageType = event.type;
+    this.mode = event.mode;
+    this.timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
+    this.replyToken = event.replyToken;
+    this.sourceUser = event.source.userId;
+    this.sourceUserId = event.source.userId;
+  }
+
+  /** ドメインオブジェクトのエントリポイントと言える課題解決メソッド */
+  getSolution() {
+    //ここの処理すごく長くなる気がするけどいいのかな？
+
+    //このように依存度が高い場合は
+    // const b = new B();
+    // b.something(/** 内部でnew A()している */)
+
+    //こうやって依存関係を解消する
+    // const a = new A();
+    // const b = new B(a);
+    // b.doSomething();
+
+
+    //成功処理？
+    const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
+    GmailApp.sendEmail(ADMIN_EMAIL, "成功です", this.userMessage);
+
+    return "FollowオブジェクトgetSolution()が成功しました";
+
+  }
+
+  /** ドメインオブジェクト判定メソッド */
+  isDomainObject() {
+    if (this.type === "unfollow") return true;
+  }
+
+
+  /** Helloを返すメソッド
+   * @return{object} ドメインオブジェクト
+   */
+  getHello() {
+    return "Hello! I'm unFollow オブジェクト"
+  }
+
+
+}
+
+
+
+
+
+/** 🔚 End 🔚 */
+
 const richMenuEnum = {
 
-testRichMenuSource : {
+  testRichMenuSource: {
     "size": {
       "width": 2500,
       "height": 1686
@@ -155,7 +229,7 @@ testRichMenuSource : {
     ]
   },
 
-  testRichMenuSource2 : {}
+  testRichMenuSource2: {}
 
 }
 
@@ -165,17 +239,17 @@ const ENUM_RICHMENU = Object.freeze(richMenuEnum);
 /**
  *  TEST用関数
  * */
-  function myFunction_20230119_022838 () {
-   
-   console.log(ENUM_RICHMENU.testRichMenuSource);
+function myFunction_20230119_022838() {
 
- }
+  console.log(ENUM_RICHMENU.testRichMenuSource);
+
+}
 
 
 /** 🔚 End 🔚 */
 
 
- const messageObjectEnum = {
+const messageObjectEnum = {
 
   follow_Form: [
     [{//follow_Form[0]

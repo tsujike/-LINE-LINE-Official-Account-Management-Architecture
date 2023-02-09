@@ -3,17 +3,18 @@
  */
 function doPost(e) {
 
-  //アプリケーション層にイベントを渡す
-  const app = new Application(e);
-
-  //課題を処理する
   try {
-    console.log(app.getSolutions());
- 
-  } catch (e) {
-    //デバッグの為の処理
+    //アプリケーション層に単体のイベントを渡して、ドメインオブジェクト（どの業務を行うのか）を決定する
+    const event = JSON.parse(e.postData.contents).events[0];
+    const app = new Application(event);
+
+    //テスト用に戻り値を変数に格納しておく
+    const result = app.getSolutions();
+    return result
+
+  } catch (error) {
     const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
-    GmailApp.sendEmail(ADMIN_EMAIL, "errorです", e.message);
+    GmailApp.sendEmail(ADMIN_EMAIL, "errorです", error.message);
   }
 
 }

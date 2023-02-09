@@ -11,7 +11,7 @@
 //データベースや外部システムとの通信を担当するリポジトリクラスや
 //外部システムとのインターフェースを提供するサービスクラスなどを持ちます
 //設計は「Appliaction」という名前からスタートします
-class Appliaction {
+class Application {
 
   /** 
     * @constructor
@@ -23,7 +23,8 @@ class Appliaction {
     //ドメインオブジェクト群
     this.domainObjects = {
       Follow: new Follow(this.event),
-      Unfollow: new Unfollow(this.event)
+      UnFollow: new UnFollow(this.event),
+      SpotInquiry: new SpotInquiry(this.event)
       //ドメインオブジェクトに変更があったら足す
     }
   }
@@ -32,7 +33,9 @@ class Appliaction {
    */
   getSolutions() {
     const domainObject = this.getDomainObject_();
-    domainObject.getSolution();
+    const result = domainObject.getSolution();
+  console.log(result);
+    return result
   }
 
 
@@ -40,16 +43,22 @@ class Appliaction {
    * @return{object} ドメインオブジェクト
    */
   getDomainObject_() {
-    for (const domainObject of this.domainObjects) {
-      if (domainObject.isDomainObject()) {
-        const domainName = domainObject.getName();
-        return this.domainObjects[domainName]
+    const domainObjects = this.domainObjects;
+    for (const domainObject in domainObjects) {
+      if (domainObjects[domainObject].isDomainObject()) {
+        return domainObjects[domainObject]
       }
     }
+
   }
 
 
-
+  /** Helloを返すメソッド
+   * @return{object} ドメインオブジェクト
+   */
+  getHello() {
+    return "Hello! I'm Application"
+  }
 }
 
 
