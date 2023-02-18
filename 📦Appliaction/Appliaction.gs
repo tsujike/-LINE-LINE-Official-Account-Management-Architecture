@@ -41,7 +41,8 @@ class Application {
       const result = domainObject.getSolution();
       return result
     } catch (e) {
-      GmailApp.sendEmail("kenzo@jugani-japan.com", "アプリケーション層のgetSolutionsでerrorです", e.message);
+      const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
+      GmailApp.sendEmail(ADMIN_EMAIL, "アプリケーション層のgetSolutionsでerrorです", e.message);
     }
   }
 
@@ -62,7 +63,8 @@ class Application {
         }
       }
     } catch (e) {
-      GmailApp.sendEmail("kenzo@jugani-japan.com", "アプリケーション層のgetDomainObject_() でerrorです", e.message);
+      const ADMIN_EMAIL = PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL");
+      GmailApp.sendEmail(ADMIN_EMAIL, "アプリケーション層のgetDomainObject_() でerrorです", e.message);
     }
   }
 

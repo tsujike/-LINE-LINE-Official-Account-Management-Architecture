@@ -63,10 +63,10 @@ function test_doPost() {
 
 
 
-
       }
     }
   })
+console.log( PropertiesService.getScriptProperties().getProperty("ADMIN_EMAIL"));
 }
 
 

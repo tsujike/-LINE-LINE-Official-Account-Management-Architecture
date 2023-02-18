@@ -1,4 +1,3 @@
-
 /**お友だち登録時ドメインオブジェクト
  * https://developers.line.biz/ja/reference/messaging-api/#follow-event
  */
@@ -125,12 +124,13 @@ https://tg-global.asia/`,
     new LINE().sendUniquePushMessage(messageObject2, this.userId);
   }
 
+
   /** ファーストフォームを送信するメソッド */
   sendFirstForm_() {
     //5秒後　
     Utilities.sleep(1000);
 
-       const messageObject2 = [{
+    const messageObject2 = [{
       "type": "text",
       "text": `Our CEO, President Kenzo, is a successful businessman in Hokkaido who is promoting the attractions of Hokkaido.
 https://www.facebook.com/kenzo.tsuji
@@ -142,7 +142,7 @@ https://open.spotify.com/show/3fsUX46qgwMYjYpqSAcWOk`,
 
     //LINEインスタンス生成
     new LINE().sendUniquePushMessage(messageObject2, this.userId);
-     
+
 
     const messageObject3 = [{
       "type": "text",
@@ -162,7 +162,29 @@ Please cooperate with us. The survey consists of 10 questions.✍️`,
 
     //3秒後
     Utilities.sleep(1000);
-    const messageObject4 = ENUM_FORM["follow_Form"][0];
+
+    // const messageObject4 = ENUM_FORM["follow_Form"][0];
+    const messageObject4 = [
+      {
+        "type": "template",
+        "altText": "Please complete our survey.",
+        "template": {
+          "type": "buttons",
+          "title": "Name？ -1/10-",
+          "text": "Please tap here to send your full name.☝️",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "Launch the keyboard.⌨️",
+              "data": "空のPostbackです",
+              "inputOption": "openKeyboard",
+              "fillInText": `Company's name(or your name):`
+            }
+          ]
+        }
+      }
+    ];
+
     new LINE().sendUniquePushMessage(messageObject4, this.userId);
     return messageObject4
   }
