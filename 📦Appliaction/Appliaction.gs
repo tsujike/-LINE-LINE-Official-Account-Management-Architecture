@@ -24,7 +24,9 @@ class Application {
     this.domainObjects = {
       Follow: new Follow(this.event),
       UnFollow: new UnFollow(this.event),
-      SpotInquiry: new SpotInquiry(this.event)
+      FollowForm: new FollowForm(this.event),
+      SpotMessage: new SpotMessage(this.event),
+      EmptyPostback: new EmptyPostback(this.event)
       //ドメインオブジェクトに変更があったら足す
     }
   }
@@ -32,9 +34,15 @@ class Application {
   /** 特定のドメインオブジェクトの課題を処理するメソッド
    */
   getSolutions() {
-    const domainObject = this.getDomainObject_();
-    const result = domainObject.getSolution();
-    return result
+
+    try {
+
+      const domainObject = this.getDomainObject_();
+      const result = domainObject.getSolution();
+      return result
+    } catch (e) {
+      GmailApp.sendEmail("kenzo@jugani-japan.com", "アプリケーション層のgetSolutionsでerrorです", e.message);
+    }
   }
 
 
@@ -42,22 +50,25 @@ class Application {
    * @return{object} ドメインオブジェクト
    */
   getDomainObject_() {
-    const domainObjects = this.domainObjects;
-    for (const domainObjectName in domainObjects) {
-      if (domainObjects[domainObjectName].isDomainObject()) {
-        return domainObjects[domainObjectName]
+
+    try {
+      const domainObjects = this.domainObjects;
+
+      for (const domainObject of Object.values(domainObjects)) {
+
+        if (domainObject.isDomainObject()) {
+
+          return domainObject
+        }
       }
+    } catch (e) {
+      GmailApp.sendEmail("kenzo@jugani-japan.com", "アプリケーション層のgetDomainObject_() でerrorです", e.message);
     }
   }
 
 
-  /** Helloを返すメソッド
-   * @return{object} ドメインオブジェクト
-   */
-  getHello() {
-    return "Hello! I'm Application"
-  }
 }
+
 
 
 //上記クラスのテスト関数
@@ -87,13 +98,13 @@ function test_Appliaction() {
           const expectation = "UnFollow"
           assertThat(result).is(expectation);
         },
-        'SpotInquiryオブジェクトを返': function () {
-          const e = SpotInquiry_WebhookEvent_SAMPLE;
+        'SpotMessageオブジェクトを返': function () {
+          const e = SpotMessage_WebhookEvent_SAMPLE;
           const event = JSON.parse(e.postData.contents).events[0];
           const a = new Application(event);
-          const domainObject = a.domainObjects["SpotInquiry"];
+          const domainObject = a.domainObjects["SpotMessage"];
           const result = domainObject.name;
-          const expectation = "SpotInquiry"
+          const expectation = "SpotMessage"
           assertThat(result).is(expectation);
         },
       }
