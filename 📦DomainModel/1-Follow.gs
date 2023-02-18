@@ -175,7 +175,7 @@ Please cooperate with us. The survey consists of 10 questions.✍️`,
           "actions": [
             {
               "type": "postback",
-              "label": "Launch the keyboard.⌨️",
+              "label": "Launch the keyboard",
               "data": "空のPostbackです",
               "inputOption": "openKeyboard",
               "fillInText": `Company's name(or your name):`
