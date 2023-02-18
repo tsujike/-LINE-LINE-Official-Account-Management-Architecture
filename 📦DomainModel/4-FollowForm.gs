@@ -42,6 +42,7 @@ class FollowForm {
       formZone = this.event.postback.data.match(/Form\d+|終了/)[0]; //Form2など
     }
 
+
     switch (formZone) {
       case "Form1":
         //2rdフォーム送信
@@ -143,7 +144,7 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "What id you gender? -2/10-",
+          "title": "What is your gender? -2/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
@@ -211,7 +212,7 @@ class FollowForm {
             },
             {
               "type": "postback",
-              "label": "Under 18 / 55 or older",
+              "label": "Under 18/55 or older",
               "data": "[follow_Form3_A4]Under 18 / 55 or older",
               "displayText": "Under 24 / 55 or older"
             }
@@ -232,7 +233,7 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "Do you have the authority to approve purchases of goods? -4/10-",
+          "title": "Do you have purchasing authority? -4/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
@@ -278,32 +279,32 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "What products are you interested in importing? -5/10-",
+          "title": "What products do you want? -5/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
               "type": "postback",
-              "label": "Japanese Seafood",
-              "data": "[follow_Form5_A1]Japanese Seafood",
-              "displayText": "Japanese Seafood"
+              "label": "Japanese Seafood:🦀",
+              "data": "[follow_Form5_A1]Japanese Seafood🦀",
+              "displayText": "Japanese Seafood🦀"
             },
             {
               "type": "postback",
-              "label": "Japanese Fuits and Vegetables",
-              "data": "[follow_Form5_A2]Japanese Fuits and Vegetables",
-              "displayText": "Japanese Fuits and Vegetables"
+              "label": "Fuits & Vegetables🍉",
+              "data": "[follow_Form5_A2]Japanese Fuits and Vegetables🍉",
+              "displayText": "Japanese Fuits and Vegetables🍉"
             },
             {
               "type": "postback",
-              "label": "Japanese Sake",
-              "data": "[follow_Form5_A3]Japanese Sake",
-              "displayText": "Japanese Sake"
+              "label": "Japanese Sake🍶",
+              "data": "[follow_Form5_A3]Japanese Sake🍶",
+              "displayText": "Japanese Sake🍶"
             },
             {
               "type": "postback",
-              "label": "Other",
-              "data": "[follow_Form5_A4]Other",
-              "displayText": "Other"
+              "label": "Other✒️",
+              "data": "[follow_Form5_A4]Other✒️",
+              "displayText": "Other✒️"
             }
 
           ]
@@ -324,32 +325,32 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "What products do you currently handle? -6/10-",
+          "title": "What products do you handling? -6/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
               "type": "postback",
-              "label": "Alternative Food & Ingredients",
-              "data": "[follow_Form6_A1]Alternative Food & Ingredients",
-              "displayText": "Alternative Food & Ingredients"
+              "label": "Food & Ingredients🍕",
+              "data": "[follow_Form6_A1]Alternative Food & Ingredients🍕",
+              "displayText": "Alternative Food & Ingredients🍕"
             },
             {
               "type": "postback",
-              "label": "Drinks, Alcohol & Wine",
-              "data": "[follow_Form6_A2]Drinks, Alcohol & Wine",
-              "displayText": "Drinks, Alcohol & Wine"
+              "label": "Alcohol & Wine🍷",
+              "data": "[follow_Form6_A2]Drinks, Alcohol & Wine🍷",
+              "displayText": "Drinks, Alcohol & Wine🍷"
             },
             {
               "type": "postback",
-              "label": "Import Japanese goods",
-              "data": "[follow_Form6_A3]Import Japanese goods",
-              "displayText": "Import Japanese goods"
+              "label": "Import goods🚢",
+              "data": "[follow_Form6_A3]Import Japanese goods🚢",
+              "displayText": "Import Japanese goods🚢"
             },
             {
               "type": "postback",
-              "label": "Other",
-              "data": "[follow_Form6_A4]Other",
-              "displayText": "Other"
+              "label": "Other✒️",
+              "data": "[follow_Form6_A4]Other✒️",
+              "displayText": "Other✒️"
             }
 
           ]
@@ -375,27 +376,27 @@ class FollowForm {
           "actions": [
             {
               "type": "postback",
-              "label": "Wholesale distributors",
-              "data": "[follow_Form7_A1]Wholesale distributors",
-              "displayText": "Wholesale distributors"
+              "label": "Wholesaler🚛",
+              "data": "[follow_Form7_A1]Wholesale distributors🚛",
+              "displayText": "Wholesale distributors🚛"
             },
             {
               "type": "postback",
-              "label": "Hotels, restaurants, and food service providers",
-              "data": "[follow_Form7_A2]Hotels, restaurants, and food service providers",
-              "displayText": "Hotels, restaurants, and food service providers"
+              "label": "Hotels,restaurants🏨",
+              "data": "[follow_Form7_A2]Hotels, restaurants, and food service providers🏨",
+              "displayText": "Hotels, restaurants, and food service providers🏨"
             },
             {
               "type": "postback",
-              "label": "Retail stores",
-              "data": "[follow_Form7_A3]Retail stores",
-              "displayText": "Retail stores"
+              "label": "Retail stores🏪",
+              "data": "[follow_Form7_A3]Retail stores🏪",
+              "displayText": "Retail stores🏪"
             },
             {
               "type": "postback",
-              "label": "Online sales",
-              "data": "[follow_Form7_A4]Online sales",
-              "displayText": "Online sales"
+              "label": "Online sales📱",
+              "data": "[follow_Form7_A4]Online sales📱",
+              "displayText": "Online sales📱"
             }
 
           ]
@@ -416,30 +417,30 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "How often do you import products? -3/10-",
+          "title": "How often do you import products? -8/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
               "type": "postback",
-              "label": "Weekly",
-              "data": "[follow_Form8_A1]Weekly",
-              "displayText": "Weekly"
+              "label": "Weekly✈️",
+              "data": "[follow_Form8_A1]Weekly✈️",
+              "displayText": "Weekly✈️"
             },
             {
               "type": "postback",
-              "label": "Monthly",
-              "data": "[follow_Form8_A2]Monthly",
-              "displayText": "Monthly"
+              "label": "Monthly⏱️",
+              "data": "[follow_Form8_A2]Monthly⏱️",
+              "displayText": "Monthly⏱️"
             },
             {
               "type": "postback",
-              "label": "Yearly",
-              "data": "[follow_Form8_A3]Yearly",
-              "displayText": "Yearly"
+              "label": "Yearly📅",
+              "data": "[follow_Form8_A3]Yearly📅",
+              "displayText": "Yearly📅"
             },
             {
               "type": "postback",
-              "label": "Never imported before",
+              "label": "Never before",
               "data": "[follow_Form8_A4]Never imported before",
               "displayText": "Never imported before"
             }
@@ -462,7 +463,7 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "What social media platforms do you usually use or look at? -9/10-",
+          "title": "What social media do you look at? -9/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
@@ -485,9 +486,9 @@ class FollowForm {
             },
             {
               "type": "postback",
-              "label": "Other",
-              "data": "[follow_Form9_A4]Other",
-              "displayText": "Other"
+              "label": "Other📱",
+              "data": "[follow_Form9_A4]Other📱",
+              "displayText": "Other📱"
             }
 
           ]
@@ -508,32 +509,32 @@ class FollowForm {
         "altText": "Please complete our survey.",
         "template": {
           "type": "buttons",
-          "title": "Where did you learn about this LINE account? -10/10-",
+          "title": "Where did you find us? -10/10-",
           "text": "Please choose from the list.",
           "actions": [
             {
               "type": "postback",
-              "label": "Social media(Facebook/Twitter/Instagram/etc)",
-              "data": "[follow_Form10_A1]Social media(Facebook/Twitter/Instagram/etc)",
-              "displayText": "Social media(Facebook/Twitter/Instagram/etc)"
+              "label": "Social Media📱",
+              "data": "[follow_Form10_A1]Social media(Facebook/Twitter/Instagram/etc)📱",
+              "displayText": "Social media(Facebook/Twitter/Instagram/etc)📱"
             },
             {
               "type": "postback",
-              "label": "Google search",
-              "data": "[follow_Form10_A2]Google search",
-              "displayText": "Google search"
+              "label": "Google search🌏",
+              "data": "[follow_Form10_A2]Google search🌏",
+              "displayText": "Google search🌏"
             },
             {
               "type": "postback",
-              "label": "Direct Email",
-              "data": "[follow_Form10_A3]Direct Email",
-              "displayText": "Direct Email"
+              "label": "Direct Email📩",
+              "data": "[follow_Form10_A3]Direct Email📩",
+              "displayText": "Direct Email📩"
             },
             {
               "type": "postback",
-              "label": "Friend",
-              "data": "[follow_Form10_A4]Friend",
-              "displayText": "Friend"
+              "label": "Friend🧑‍🤝‍🧑",
+              "data": "[follow_Form10_A4]Friend🧑‍🤝‍🧑",
+              "displayText": "Friend🧑‍🤝‍🧑"
             }
 
           ]
@@ -555,18 +556,18 @@ class FollowForm {
         "altText": "Thank you for your time and participation.🎉",
         "template": {
           "type": "buttons",
-          "title": "終了🎉",
-          "text": "Are you ending the survey?",
+          "title": "Finished🎉",
+          "text": "Are you ending or restart from the beginning again?",
           "actions": [
             {
               "type": "postback",
-              "label": "Finish",
-              "data": "[follow_Form11_A1]Finish",
-              "displayText": "Finish"
+              "label": "Finish🔚",
+              "data": "[follow_Form11_A1]Finish🔚",
+              "displayText": "Finish🔚"
             },
             {
               "type": "postback",
-              "label": "Start the survey from the beginning again.✍️",
+              "label": "Again✍️",
               "data": "[follow_Form12_A1]Start the survey from the beginning again.✍️",
               "displayText": "Start the survey from the beginning again.✍️"
             }
@@ -642,12 +643,24 @@ https://tg-global.asia/`,
 function testFollowForm() {
 
 
-  const e = SpotMessage_WebhookEvent_SAMPLE;
+  // const e = SpotMessage_WebhookEvent_SAMPLE;
+  const e = FOLLOWFORM_WebhookEvent_SAMPLE;
+
   const event = JSON.parse(e.postData.contents).events[0];
 
   const f = new FollowForm(event);
   console.log(f.name);
 
   console.log(f.isDomainObject());
+
+  // console.log(f.sendForm3_());
+  // console.log(f.sendForm4_());
+  // console.log(f.sendForm5_());
+  // console.log(f.sendForm6_());
+  // console.log(f.sendForm7_());
+  // console.log(f.sendForm8_());
+  // console.log(f.sendForm9_());
+  // console.log(f.sendForm10_());
+  // console.log(f.sendForm11_());
 
 }

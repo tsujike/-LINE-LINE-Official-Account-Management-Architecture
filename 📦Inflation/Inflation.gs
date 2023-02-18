@@ -79,18 +79,20 @@ class DataSheet {
  * @param{array} event
  */
   appendRowPostBackEvent(event) {
-    const messageType = event.type;
-    const userMessage = event.postback.data;
-    const timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
-    const userId = event.source.userId;
-    const mode = event.mode;
-    const scenario = event.postback.data.match(/\[.*?_/)[0].replace("[", "").replace("_", ""); //followなど
-    const formZone = event.postback.data.match(/Form\d+|終了/)[0]; //form1など
-    const answerNumber = event.postback.data.match(/(?<=\[follow_Form\d_)[A-Z]\d(?=\])/)[0];
-    const answerText = event.postback.data.match(/(?<=\])\S+/)[0];
+      const messageType = event.type;
+      const userMessage = event.postback.data;
+      const timestamp = Utilities.formatDate(new Date(event.timestamp), "JST", "yyyyMMdd_hh:mm:ss");
+      const userId = event.source.userId;
+      const mode = event.mode;
+      const scenario = event.postback.data.match(/\[.*?_/)[0].replace("[", "").replace("_", ""); //followなど
+      const formZone = event.postback.data.match(/Form\d+|終了/)[0]; //form1など
 
-    const record = [messageType, userMessage, timestamp, userId, "", mode, scenario, formZone, answerNumber, answerText];
-    this.sheet.appendRow(record);
+      const answerNumber = event.postback.data.match(/(?<=\[follow_Form\d{1,2}_)[A-Z]\d(?=\])/)[0];
+      const answerText = event.postback.data.match(/(?<=\])\S+/)[0];
+
+      const record = [messageType, userMessage, timestamp, userId, "", mode, scenario, formZone, answerNumber, answerText];
+      this.sheet.appendRow(record);
+
   }
 
 

@@ -148,7 +148,7 @@ https://open.spotify.com/show/3fsUX46qgwMYjYpqSAcWOk`,
       "type": "text",
       "text": `For those who respond to the initial survey, we are running a campaign of 10% off on the first transaction (up to a limit of JPY 50,000)🎉. 
       
-Please cooperate with us. The survey consists of 10 questions.✍️`,
+Please complete our survey. The survey consists of 10 questions.✍️`,
     }
     ];
 
