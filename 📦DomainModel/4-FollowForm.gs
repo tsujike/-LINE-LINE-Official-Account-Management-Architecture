@@ -587,7 +587,7 @@ class FollowForm {
       "type": "text",
       "text": `Thank you for your time and participation.⭐The campaign coupon will be applied to your first transaction.🎊
 
-List of JETRO Cooperative Companies for Export of Fishery and Food Products
+We can conduct import transactions with many Japanese companies other than our own. Please also refer to this list. We hope that all of your businesses will be successful.
 https://www.jetro.go.jp/industry/foods/trading_company_list.html
 
 TG GLOBAL CO.LTD.
